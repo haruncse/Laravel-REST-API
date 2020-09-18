@@ -54,7 +54,12 @@ class ApiTestController extends Controller
      */
     public function show($id)
     {
-        //
+        $apiData=ApiTestTable::find($id);
+        if($apiData!=null){
+            return Response()->json($apiData,201);
+          }else{
+            return Response(503);
+        }
     }
 
     /**
@@ -77,7 +82,19 @@ class ApiTestController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData=$request->validate([
+            'api_data' => 'required|unique:apitesttable|max:30'
+        ]);
+        
+        $apiData=ApiTestTable::findorfail($id);
+        if($apiData!=null){
+            //$apiData->api_data=$request->api_data;
+            //$apiData->save();
+            $apiData->update($request->all());
+            return Response('Updated',201);
+          }else{
+            return Response(503);
+        }
     }
 
     /**
@@ -88,6 +105,12 @@ class ApiTestController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $apiData=ApiTestTable::find($id);
+        if($apiData!=null){
+            $apiData->delete();
+            return Response('Deleted',201);
+        }else{
+            return Response(503);
+        }
     }
 }
