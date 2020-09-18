@@ -37,7 +37,13 @@ class ApiTestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData=$request->validate([
+            'api_data' => 'required|unique:apitesttable|max:30'
+        ]);
+        $apiData=new ApiTestTable;
+        $apiData->api_data=$request->api_data;
+        $apiData->save();
+        return Response('Inserted',201);
     }
 
     /**

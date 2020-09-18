@@ -18,6 +18,8 @@ class CreateApiTestTable extends Migration
             $table->string('api_data');
             $table->timestamps();
         });
+
+        //Schema::rename('api', 'ApiTestTable');
     }
 
     /**
