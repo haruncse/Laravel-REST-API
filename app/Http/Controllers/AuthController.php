@@ -92,4 +92,9 @@ class AuthController extends Controller
     {
         return Auth::guard();
     }
+
+    public function payload()
+    {
+    	return auth()->payload();	
+    }
 }
