@@ -7,3 +7,4 @@
 });*/
 
 Route::apiResource('/laravel-api','Api\ApiTestController');
+Route::apiResource('/customer-api','CustomerInfoController');
